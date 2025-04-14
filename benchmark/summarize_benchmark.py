@@ -138,6 +138,8 @@ def extract_key_metrics(dirname: str) -> Dict[str, Any]:
             model_name = model_name.replace('deepseek/', '')
         if 'meta-llama/' in model_name:
             model_name = model_name.replace('meta-llama/', '')
+        if 'google/' in model_name:
+            model_name = model_name.replace('google/', '')
         
         metrics['model'] = model_name
             
@@ -270,17 +272,22 @@ def plot_comparison(df: pd.DataFrame, output_path: Optional[str] = None) -> None
     # Define column names as variables for consistent usage
     pass_rate_column = 'pass_rate_2'
     cost_column = 'total_cost'
+    seconds_column = 'seconds_per_case'
     
     # Use the model_display column for plotting if it exists
     model_col = 'model_display' if 'model_display' in df.columns else 'model'
     
-    if not all(col in df.columns for col in [model_col, pass_rate_column, cost_column]):
-        print(f"DataFrame missing required columns for plotting: {model_col}, {pass_rate_column}, {cost_column}")
+    # Check for required columns
+    required_cols = [model_col, pass_rate_column, cost_column, seconds_column]
+    if not all(col in df.columns for col in required_cols):
+        missing = [col for col in required_cols if col not in df.columns]
+        print(f"DataFrame missing required columns for plotting: {', '.join(missing)}")
         return
     
     # Ensure numeric columns
     df[pass_rate_column] = pd.to_numeric(df[pass_rate_column], errors='coerce')
     df[cost_column] = pd.to_numeric(df[cost_column], errors='coerce')
+    df[seconds_column] = pd.to_numeric(df[seconds_column], errors='coerce')
     
     # Sort by pass rate (descending)
     df = df.sort_values(by=pass_rate_column, ascending=False)
@@ -300,6 +307,7 @@ def plot_comparison(df: pd.DataFrame, output_path: Optional[str] = None) -> None
     bar_color = '#0066cc'  # Rich blue
     bar_edge_color = '#003366'  # Darker blue
     cost_color = '#cc3300'  # Deep red
+    seconds_color = '#008000'
     
     # Add a gradient background
     ax1.set_facecolor('#f8f9fa')
@@ -322,24 +330,25 @@ def plot_comparison(df: pd.DataFrame, output_path: Optional[str] = None) -> None
     )
     
     # Add value labels on top of bars
-    for bar in bars:
+    for i, bar in enumerate(bars):
         height = bar.get_height()
+        # Add Pass Rate % label
         ax1.text(
             bar.get_x() + bar.get_width() / 2.,
             height + 0.8,
             f'{height:.1f}%',
             ha='center', 
             va='bottom',
-            fontsize=18,
+            fontsize=14,
             fontweight='bold',
             color='#000000'
         )
     
     # Set up the primary y-axis with more padding
     max_pass_rate = max(df[pass_rate_column])
-    ax1.set_ylim(0, max_pass_rate * 1.25)  # 25% headroom
-    ax1.set_ylabel('Pass Rate (%)', fontsize=18, fontweight='bold', labelpad=15)
-    ax1.set_xlabel('Model', fontsize=18, fontweight='bold', labelpad=15)
+    ax1.set_ylim(0, max_pass_rate * 1.25)
+    ax1.set_ylabel('Pass Rate (%)', fontsize=16, fontweight='bold', labelpad=15)
+    # ax1.set_xlabel('Model', fontsize=16, fontweight='bold', labelpad=15) # Removed Model label
     
     # Style the ticks and grid
     ax1.tick_params(axis='y', labelcolor='black', labelsize=14, width=2)
@@ -364,23 +373,25 @@ def plot_comparison(df: pd.DataFrame, output_path: Optional[str] = None) -> None
     
     # Add value labels for cost points
     for i, cost in enumerate(df[cost_column]):
-        # Position price labels to the top right
-        x_offset = 10  # Position to the right
-        y_offset = 10  # Position to the top
-            
-        # Add a background box
-        ax2.annotate(
-            f'${cost:.2f}',
-            (i, cost),
-            xytext=(x_offset, y_offset),
-            textcoords='offset points',
-            ha='left',
-            va='bottom',
-            fontsize=14,
-            fontweight='bold',
-            color=cost_color,
-            bbox=dict(facecolor='white', alpha=0.8, edgecolor=cost_color, boxstyle='round,pad=0.3', linewidth=1)
-        )
+        # Only annotate if cost is greater than 0
+        if cost > 0:
+            # Position price labels to the top right
+            x_offset = 10  # Position to the right
+            y_offset = 10  # Position to the top
+                
+            # Add a background box
+            ax2.annotate(
+                f'${cost:.2f}',
+                (i, cost),
+                xytext=(x_offset, y_offset),
+                textcoords='offset points',
+                ha='left',
+                va='bottom',
+                fontsize=12,
+                fontweight='bold',
+                color=cost_color,
+                bbox=dict(facecolor='white', alpha=0.8, edgecolor=cost_color, boxstyle='round,pad=0.3', linewidth=1)
+            )
     
     # Style the secondary y-axis
     ax2.set_ylabel('Total Cost ($)', color=cost_color, fontsize=18, fontweight='bold', labelpad=15)
@@ -402,22 +413,50 @@ def plot_comparison(df: pd.DataFrame, output_path: Optional[str] = None) -> None
     plt.figtext(0.5, 0.01, f"Generated on {today} | pass rate based on {pass_rate_column}", 
                 ha="center", fontsize=12, fontweight='bold', color='#666666')
     
-    # Create legend
-    lines1, labels1 = ax1.get_legend_handles_labels()
+    # Create a dummy plot for the seconds legend entry FIRST
+    dummy_seconds_line = ax1.plot([], [], color=seconds_color, linestyle='None', marker='None', 
+                                 label='Sec/Test')[0]
+                                 
+    # Create legend (NOW dummy_seconds_line exists)
+    # Get handles and labels from both axes
+    lines1, labels1 = ax1.get_legend_handles_labels() 
     lines2, labels2 = ax2.get_legend_handles_labels()
-    legend = ax1.legend(lines1 + lines2, labels1 + labels2, 
+    
+    # Find and remove the dummy handle/label from ax1 lists
+    dummy_handle = dummy_seconds_line
+    dummy_label = 'Sec/Test'
+    filtered_lines1 = [h for h, l in zip(lines1, labels1) if l != dummy_label]
+    filtered_labels1 = [l for l in labels1 if l != dummy_label]
+    
+    # Combine handles and labels in the desired order (dummy last)
+    final_handles = filtered_lines1 + lines2 + [dummy_handle]
+    final_labels = filtered_labels1 + labels2 + [dummy_label]
+    
+    # Create legend with the specific order
+    legend = ax1.legend(final_handles, final_labels, 
                 loc='upper right', frameon=True, framealpha=0.95, 
                 edgecolor='#444444', fontsize=14)
     legend.get_frame().set_facecolor('white')
-    legend.get_frame().set_linewidth(2)
+
+    # Color the Sec/Test legend label text green
+    for text in legend.get_texts():
+        if text.get_text() == 'Sec/Test':
+            text.set_color(seconds_color)
     
     # Process model names for better readability
+    # REMOVED dummy plot creation from here
+    
     labels = ax1.get_xticklabels()
     
     # First get model names and process them
     processed_labels = []
     for label in labels:
         text = label.get_text()
+        
+        # Remove date patterns like -YYYY-MM-DD
+        text = re.sub(r'-\d{4}-\d{2}-\d{2}', '', text)
+        text = re.sub(r'-\d{2}-\d{2}', '', text)
+        text = re.sub(r'-\d{4}', '', text)
         
         # Simplify model names for better readability
         if 'anthropic/' in text:
@@ -450,9 +489,9 @@ def plot_comparison(df: pd.DataFrame, output_path: Optional[str] = None) -> None
     max_lines = 1
     
     for text in processed_labels:
-        if len(text) > 12:  # If text is longer than 12 chars
+        if len(text) > 8:  # If text is longer than 12 chars
             # Use textwrap to create proper line breaks
-            wrapped_text = '\n'.join(textwrap.wrap(text, width=12, break_long_words=True))
+            wrapped_text = '\n'.join(textwrap.wrap(text, width=8, break_long_words=True))
             wrapped_labels.append(wrapped_text)
             # Count lines for padding calculation
             lines = wrapped_text.count('\n') + 1
@@ -461,17 +500,36 @@ def plot_comparison(df: pd.DataFrame, output_path: Optional[str] = None) -> None
             wrapped_labels.append(text)
     
     # Set the wrapped labels and ensure they're horizontal and centered
-    ax1.set_xticklabels(wrapped_labels, rotation=0, ha='center', fontsize=12)
+    ax1.set_xticklabels(wrapped_labels, rotation=0, ha='center', fontsize=11)
     
-    # Adjust the bottom padding based on the maximum number of lines
-    bottom_padding = 0.15 + (max_lines * 0.03)  # Base padding plus additional per line
+    # Add Sec/Test below x-axis labels, separated by two newlines
+    # Calculate a fixed offset based on the tallest label (max_lines)
+    fixed_y_offset = -0.06 - (max_lines * 0.025) - (2 * 0.025) 
+    
+    for i, seconds in enumerate(df[seconds_column]):
+        if seconds > 0:
+            # Removed dynamic offset calculation based on num_lines_model
+            # num_lines_model = wrapped_labels[i].count('\n') + 1
+            # y_offset = -0.06 - (num_lines_model * 0.025) - (2 * 0.025) 
+            
+            ax1.text(i, fixed_y_offset, f'\n\n{seconds:.1f}s', # Use the fixed offset, added " / case"
+                     transform=ax1.get_xaxis_transform(),
+                     ha='center',
+                     va='top', # Align top of text block to y_offset
+                     fontsize=10,
+                     color=seconds_color,
+                     linespacing=1.0) # Adjust line spacing if needed
+
+    # Adjust bottom padding for model labels + 3 extra lines (2 newlines + seconds)
+    # Need substantial padding increase
+    bottom_padding = 0.15 + (max_lines * 0.03) + (3 * 0.04) # Original + extra for 3 lines
     
     # Add horizontal padding between ticks by setting margins
     plt.margins(x=0.15)  # Increased from 0.1 to 0.15 for more padding
     
     # Adjust layout with extra space at bottom for labels
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
-    plt.subplots_adjust(bottom=bottom_padding, wspace=0.3)  # Dynamic padding based on label height
+    plt.subplots_adjust(bottom=bottom_padding, wspace=0.3)  # Apply new bottom padding
     
     # Force the label settings one more time after all adjustments
     for label in ax1.get_xticklabels():
