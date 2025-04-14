@@ -1,0 +1,22 @@
+name: kindergarten-garden
+version: 1.1.1.8
+
+dependencies:
+  - base
+# Removed 'containers' from top-level dependencies
+
+library:
+  exposed-modules: Garden
+  source-dirs: src
+  ghc-options: -Wall
+  dependencies:
+  # List here the packages you want to use in your solution.
+    - containers # Added containers dependency specifically for the library
+
+tests:
+  test:
+    main: Tests.hs
+    source-dirs: test
+    dependencies:
+      - kindergarten-garden
+      - hspec
