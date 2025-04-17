@@ -415,7 +415,7 @@ def plot_comparison(df: pd.DataFrame, output_path: Optional[str] = None) -> None
     
     # Create a dummy plot for the seconds legend entry FIRST
     dummy_seconds_line = ax1.plot([], [], color=seconds_color, linestyle='None', marker='None', 
-                                 label='Sec/Case')[0]
+                                 label='Sec/Test')[0]
                                  
     # Create legend (NOW dummy_seconds_line exists)
     # Get handles and labels from both axes
@@ -424,7 +424,7 @@ def plot_comparison(df: pd.DataFrame, output_path: Optional[str] = None) -> None
     
     # Find and remove the dummy handle/label from ax1 lists
     dummy_handle = dummy_seconds_line
-    dummy_label = 'Sec/Case'
+    dummy_label = 'Sec/Test'
     filtered_lines1 = [h for h, l in zip(lines1, labels1) if l != dummy_label]
     filtered_labels1 = [l for l in labels1 if l != dummy_label]
     
@@ -440,7 +440,7 @@ def plot_comparison(df: pd.DataFrame, output_path: Optional[str] = None) -> None
 
     # Color the Sec/Test legend label text green
     for text in legend.get_texts():
-        if text.get_text() == 'Sec/Case':
+        if text.get_text() == 'Sec/Test':
             text.set_color(seconds_color)
     
     # Process model names for better readability
