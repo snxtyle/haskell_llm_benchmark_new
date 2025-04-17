@@ -6,25 +6,26 @@ It is a modified version of the [Aider benchmark harness](https://github.com/Aid
 
 The benchmark is based on [Exercism's Haskell exercises](https://exercism.org/tracks/haskell) ([Github](https://github.com/exercism/haskell)). This benchmark evaluates how effectively a coding assistant and LLMs can translate a natural language coding request into executable code saved into files that pass unit tests. It provides an end-to-end evaluation of not just the LLM's coding ability, but also its capacity to edit existing code and format those code edits so that aider can save the edits to the local source files.
 
-_Last updated: 2025-04-15_
+_Last updated: 2025-04-16_
 
-![Haskell LLM Benchmark](/benchmark-result/report-2025-04-15-10-32-59/benchmark_comparison.png)
+![Haskell LLM Benchmark](/benchmark-result/report-2025-04-16-23-09-58/benchmark_comparison.png)
 
 | Model | Tests | Pass % | Pass 1st Try % | Tests Passed | Passes 1st Try | Well Formed % | Errors | Sec/Test | Total Cost ($) | Cost/Test ($) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| o3-high | 112 | 88.4 | 73.2 | 99 | 82 | 100.0 | 0 | 51.7 | 19.05 | 0.1701 |
+| o3 | 112 | 84.8 | 73.2 | 95 | 82 | 100.0 | 0 | 27.2 | 11.81 | 0.1055 |
 | o1-pro | 112 | 82.1 | 72.3 | 92 | 81 | 99.1 | 1 | 301.6 | 275.04 | 2.4558 |
 | o1 | 112 | 79.5 | 67.9 | 89 | 76 | 99.1 | 1 | 49.3 | 29.22 | 0.2609 |
 | claude-3-7-sonnet-20250219 (thinking) | 112 | 77.7 | 67.9 | 87 | 76 | 99.1 | 2 | 79.5 | 12.55 | 0.1120 |
 | gemini-2.5-pro-preview-03-25 | 112 | 75.9 | 68.8 | 85 | 77 | 96.4 | 6 | 44.2 | 0.00 | 0.0000 |
 | o3-mini | 112 | 75.0 | 63.4 | 84 | 71 | 100.0 | 0 | 37.5 | 2.13 | 0.0190 |
+| o4-mini | 112 | 74.1 | 67.9 | 83 | 76 | 99.1 | 1 | 29.4 | 1.81 | 0.0162 |
 | claude-3-7-sonnet-20250219 | 112 | 66.1 | 55.4 | 74 | 62 | 99.1 | 1 | 15.9 | 3.80 | 0.0340 |
 | gpt-4.1-2025-04-14 | 112 | 65.2 | 57.1 | 73 | 64 | 100.0 | 0 | 7.6 | 1.14 | 0.0102 |
 | gpt-4.1-mini-2025-04-14 | 112 | 63.4 | 51.8 | 71 | 58 | 100.0 | 0 | 5.3 | 0.24 | 0.0021 |
-| gpt-4o | 112 | 57.1 | 48.2 | 64 | 54 | 100.0 | 0 | 12.4 | 1.60 | 0.0143 |
 | deepseek-chat-v3-0324 | 112 | 56.2 | 42.0 | 63 | 47 | 100.0 | 0 | 59.2 | 0.41 | 0.0037 |
 | llama-4-maverick | 112 | 46.4 | 32.1 | 52 | 36 | 91.1 | 10 | 16.0 | 0.00 | 0.0000 |
-| gemini-2.0-flash | 112 | 45.5 | 37.5 | 51 | 42 | 97.3 | 3 | 4.9 | 0.08 | 0.0007 |
-| gpt-4o-mini | 112 | 34.8 | 23.2 | 39 | 26 | 100.0 | 0 | 13.4 | 0.11 | 0.0010 |
+
 
 
 
