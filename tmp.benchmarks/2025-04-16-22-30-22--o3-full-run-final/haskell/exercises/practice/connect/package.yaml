@@ -1,0 +1,19 @@
+name: connect
+version: 1.1.0.6
+
+dependencies:
+  - base
+  # The library no longer requires “containers”, so it has been removed.
+
+library:
+  exposed-modules: Connect
+  source-dirs: src
+  ghc-options: -Wall
+
+tests:
+  test:
+    main: Tests.hs
+    source-dirs: test
+    dependencies:
+      - connect
+      - hspec

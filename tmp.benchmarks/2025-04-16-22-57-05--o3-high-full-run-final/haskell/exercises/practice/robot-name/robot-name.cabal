@@ -1,0 +1,30 @@
+cabal-version:       >=1.10
+name:                robot-name
+version:             0.1.0.4
+build-type:          Simple
+
+-- Library --------------------------------------------------------------------
+library
+  exposed-modules:     Robot
+  hs-source-dirs:      src
+  ghc-options:         -Wall
+  default-language:    Haskell2010
+  build-depends:
+      base       >= 4.7  && < 5
+    , mtl
+    , containers
+    , random
+
+-- Test suite -----------------------------------------------------------------
+test-suite tests
+  type:                exitcode-stdio-1.0
+  main-is:             Tests.hs
+  hs-source-dirs:      test
+  default-language:    Haskell2010
+  build-depends:
+      base        >= 4.7  && < 5
+    , robot-name
+    , hspec       >= 2.4
+    , mtl
+    , containers
+    , random

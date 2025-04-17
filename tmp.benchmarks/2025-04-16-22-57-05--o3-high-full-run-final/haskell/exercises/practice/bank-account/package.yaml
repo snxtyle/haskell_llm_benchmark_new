@@ -1,0 +1,21 @@
+name: bank-account
+version: 0.1.0.4
+
+# Global dependencies apply to all components (library, tests, etc.)
+dependencies:
+  - base
+  - stm            # needed for Control.Concurrent.STM
+
+library:
+  exposed-modules: BankAccount
+  source-dirs: src
+  ghc-options: -Wall
+
+tests:
+  test:
+    main: Tests.hs
+    source-dirs: test
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+    dependencies:
+      - bank-account
+      - hspec

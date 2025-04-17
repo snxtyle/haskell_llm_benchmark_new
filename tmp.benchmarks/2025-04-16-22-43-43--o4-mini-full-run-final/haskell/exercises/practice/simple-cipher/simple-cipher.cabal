@@ -1,0 +1,28 @@
+cabal-version:       >=1.10
+name:                simple-cipher
+version:             1.2.0.5
+synopsis:            Simple Caesar & substitution cipher library
+description:         Provides Caesar and key‐based substitution ciphers, with an option for a random key.
+license:             BSD3
+license-file:        LICENSE
+author:              Your Name
+maintainer:          you@example.com
+category:            Encryption
+build-type:          Simple
+extra-source-files:  README.md
+
+library
+  exposed-modules:     Cipher
+  hs-source-dirs:      src
+  build-depends:       base >=4.7 && <5
+                     , random
+  default-language:    Haskell2010
+
+test-suite test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Tests.hs
+  build-depends:       base >=4.7 && <5
+                     , simple-cipher
+                     , hspec >=2.7 && <3
+  default-language:    Haskell2010

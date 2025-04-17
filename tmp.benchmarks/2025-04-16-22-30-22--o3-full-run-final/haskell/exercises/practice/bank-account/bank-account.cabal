@@ -1,0 +1,32 @@
+cabal-version:      2.4
+name:               bank-account
+version:            0.1.0.4
+synopsis:           Bank account exercise
+description:        Concurrency‑safe bank accounts for the exercise.
+license:            BSD-3-Clause
+author:             Example
+maintainer:         example@example.com
+category:           Exercise
+build-type:         Simple
+extra-source-files: README.md
+
+library
+  exposed-modules:  BankAccount
+  hs-source-dirs:   src
+  default-language: Haskell2010
+  ghc-options:      -Wall
+  build-depends:
+      base >=4.14 && <5,
+      stm  >=2.5  && <2.6
+
+test-suite bank-account-test
+  type:             exitcode-stdio-1.0
+  main-is:          Tests.hs
+  hs-source-dirs:   test
+  default-language: Haskell2010
+  ghc-options:      -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base,
+      bank-account,
+      hspec,
+      stm

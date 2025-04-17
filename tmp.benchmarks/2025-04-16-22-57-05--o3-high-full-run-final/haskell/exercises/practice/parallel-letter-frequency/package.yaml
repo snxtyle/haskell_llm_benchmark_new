@@ -1,0 +1,12 @@
+name: parallel-letter-frequency
+version: 0.1.0.4
+
+dependencies:
+  - base
+  - containers
+  - text
+
+library:
+  exposed-modules: Frequency
+  source-dirs: src
+  ghc-options: -Wall

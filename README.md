@@ -86,3 +86,12 @@ The report generator will:
 - Generate a formatted table in both CSV and Markdown formats
 - Create a visual comparison chart showing pass rates and costs
 - Save results in a timestamped directory under benchmark-result/
+
+___ 
+
+### Updating to latest aider version
+
+```sh
+git fetch upstream
+git merge upstream/main
+```
