@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   let currentMode = 'view'; // 'view', 'select', 'detail'
   let selectedRows = new Set(); // Store indices of selected rows
-  const MAX_DISPLAY_COST_CAP = 50; // Define the constant here
+  const MAX_DISPLAY_COST_CAP = 75; // Define the constant here
 
   const allMainRows = document.querySelectorAll('tr[id^="main-row-"]');
   const allDetailsRows = document.querySelectorAll('tr[id^="details-"]');
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const selectAllCheckbox = document.getElementById('select-all-checkbox');
   const leaderboardTitle = document.getElementById('leaderboard-title'); // Get title element
   const defaultTitle = "Aider polyglot coding leaderboard";
-  const filteredTitle = "Aider polyglot coding benchmark results";
+  const filteredTitle = "Aider polyglot coding benchmark results (selected)";
 
   function applySearchFilter() {
     const searchTerm = searchInput.value.toLowerCase();
