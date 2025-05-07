@@ -932,6 +932,17 @@ def run_test_real(
             if verbose:
                 print(f"Failed to clean up Node.js node_modules directory: {e}")
 
+    # Haskell .stack-work directory
+    stack_work_dir = testdir / ".stack-work"
+    if stack_work_dir.exists():
+        try:
+            shutil.rmtree(stack_work_dir)
+            if verbose:
+                print(f"Cleaned up Haskell .stack-work directory: {stack_work_dir}")
+        except (OSError, shutil.Error, PermissionError) as e:
+            if verbose:
+                print(f"Failed to clean up Haskell .stack-work directory: {e}")
+
     results = dict(
         testdir=str(testdir),
         testcase=testdir.name,
