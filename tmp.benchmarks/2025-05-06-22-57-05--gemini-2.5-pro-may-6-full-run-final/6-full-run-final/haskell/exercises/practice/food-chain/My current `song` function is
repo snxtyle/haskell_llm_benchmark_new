@@ -1,0 +1,2 @@
+song :: String
+song = intercalate "\n\n" $ map generateVerse [0 .. length animalsData - 1]

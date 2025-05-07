@@ -1,0 +1,21 @@
+name: simple-cipher
+version: 1.2.0.5
+
+# Top-level dependencies removed as 'base' is specified in library and tests.
+# If you had executables defined here, this section might be more relevant.
+
+library:
+  exposed-modules: Cipher
+  source-dirs: src
+  ghc-options: -Wall
+  dependencies:
+    - base
+    - random
+
+tests:
+  test:
+    main: Tests.hs
+    source-dirs: test
+    dependencies:
+      - simple-cipher
+      - hspec

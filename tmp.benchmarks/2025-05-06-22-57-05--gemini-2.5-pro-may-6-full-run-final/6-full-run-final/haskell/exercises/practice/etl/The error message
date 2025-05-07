@@ -1,0 +1,15 @@
+/Users/p/src/haskell_llm_benchmark/etl/src/ETL.hs:20:29: error:
+    • Couldn't match type ‘a1’ with ‘a’
+      Expected: Map a1 String
+        Actual: Map a String
+      ‘a1’ is a rigid type variable bound by
+        the type signature for:
+          legacyList :: forall a1. [(a1, String)]
+        at src/ETL.hs:19:5-31
+      ‘a’ is a rigid type variable bound by
+        the type signature for:
+          transform :: forall a. Map a String -> Map Char a
+        at src/ETL.hs:15:1-39
+    • In the first argument of ‘Map.toList’, namely ‘legacyData’
+      In the expression: Map.toList legacyData
+      In an equation for ‘legacyList’: legacyList = Map.toList legacyData
