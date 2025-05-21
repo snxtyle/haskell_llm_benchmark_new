@@ -55,6 +55,7 @@
           soundfile
           typer
           watchfiles
+          oslex
           
           # Additional dependencies for visualization
           imgcat
