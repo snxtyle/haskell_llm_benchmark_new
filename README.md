@@ -6,17 +6,21 @@ It is a modified version of the [Aider benchmark harness](https://github.com/Aid
 
 The benchmark is based on [Exercism's Haskell exercises](https://exercism.org/tracks/haskell) ([Github](https://github.com/exercism/haskell)). This benchmark evaluates how effectively a coding assistant and LLMs can translate a natural language coding request into executable code saved into files that pass unit tests. It provides an end-to-end evaluation of not just the LLM's coding ability, but also its capacity to edit existing code and format those code edits so that aider can save the edits to the local source files.
 
-_Last updated: 2025-04-16_
+_Last updated: 2025-05-22_
 
-![Haskell LLM Benchmark](/benchmark-result/report-2025-04-16-23-18-34/benchmark_comparison.png)
+![Haskell LLM Benchmark](/benchmark-result/report-2025-05-22-13-09-10/benchmark_comparison.png)
 
 | Model | Tests | Pass % | Pass 1st Try % | Tests Passed | Passes 1st Try | Well Formed % | Errors | Sec/Test | Total Cost ($) | Cost/Test ($) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | o3-high | 112 | 88.4 | 73.2 | 99 | 82 | 100.0 | 0 | 51.7 | 19.05 | 0.1701 |
 | o3 | 112 | 84.8 | 73.2 | 95 | 82 | 100.0 | 0 | 27.2 | 11.81 | 0.1055 |
 | o1-pro | 112 | 82.1 | 72.3 | 92 | 81 | 99.1 | 1 | 301.6 | 275.04 | 2.4558 |
+| claude-opus-4-20250514 | 112 | 81.2 | 65.2 | 91 | 73 | 100.0 | 0 | 22.5 | 0.00 | 0.0000 |
+| gemini-2.5-pro-preview | 112 | 80.4 | 73.2 | 90 | 82 | 99.1 | 2 | 109.4 | 0.00 | 0.0000 |
 | o1 | 112 | 79.5 | 67.9 | 89 | 76 | 99.1 | 1 | 49.3 | 29.22 | 0.2609 |
+| claude-sonnet-4-20250514 | 112 | 77.7 | 61.6 | 87 | 69 | 99.1 | 4 | 14.8 | 0.00 | 0.0000 |
 | claude-3-7-sonnet-20250219 (thinking) | 112 | 77.7 | 67.9 | 87 | 76 | 99.1 | 2 | 79.5 | 12.55 | 0.1120 |
+| gemini-2.5-flash-preview-05-20:thinking | 112 | 75.9 | 58.0 | 85 | 65 | 98.2 | 3 | 29.5 | 0.00 | 0.0000 |
 | gemini-2.5-pro-preview-03-25 | 112 | 75.9 | 68.8 | 85 | 77 | 96.4 | 6 | 44.2 | 0.00 | 0.0000 |
 | o3-mini | 112 | 75.0 | 63.4 | 84 | 71 | 100.0 | 0 | 37.5 | 2.13 | 0.0190 |
 | o4-mini | 112 | 74.1 | 67.9 | 83 | 76 | 99.1 | 1 | 29.4 | 1.81 | 0.0162 |

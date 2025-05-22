@@ -1,0 +1,1 @@
+transform :: Map a String -> Map Char a
