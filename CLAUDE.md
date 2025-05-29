@@ -37,4 +37,11 @@ The summarize_benchmark.py script:
 - Creates visualizations comparing model performance with cost information
 - Saves reports in timestamped directories under benchmark-result/
 
+## README Updates
+When new benchmark results are available:
+- Update README.md with latest benchmark results from the most recent report
+- Change the "Last updated" date to match the report timestamp
+- Update the image path to point to the latest benchmark_comparison.png
+- Replace the benchmark table with results from the latest summary_table.md
+
 Always run any new or modified Python scripts with required packages installed before committing changes. For benchmark scripts, always use `nix develop` to ensure a consistent environment.
