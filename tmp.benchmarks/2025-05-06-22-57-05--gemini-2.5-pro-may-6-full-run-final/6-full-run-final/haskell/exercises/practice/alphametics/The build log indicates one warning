@@ -1,5 +1,0 @@
-/Users/p/src/haskell_llm_benchmark/alphametics/src/Alphametics.hs:3:30: warning: [-Wunused-imports]
-    The import of ‘mapM’ from module ‘Control.Monad’ is redundant
-  |
-3 | import Control.Monad (guard, mapM)
-  |                              ^^^^

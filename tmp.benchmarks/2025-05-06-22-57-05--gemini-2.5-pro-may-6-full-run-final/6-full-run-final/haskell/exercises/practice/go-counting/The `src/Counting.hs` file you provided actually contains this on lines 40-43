@@ -1,4 +1,0 @@
-            let (updatedBorderingColors, newEmptyNeighborsToQueue) =
-                    L.foldl' (exploreNeighbor territoryFound) -- currentCell removed from partial application
-                          (borderingColorsFound, []) 
-                          (adjacentCoords currentCell)

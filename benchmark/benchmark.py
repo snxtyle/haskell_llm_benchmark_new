@@ -1000,7 +1000,7 @@ def run_unit_tests(original_dname, testdir, history_fname, test_files):
         ".js": ["/aider/benchmark/npm-test.sh"],
         ".cpp": ["/aider/benchmark/cpp-test.sh"],
         ".java": ["./gradlew", "test"],
-        ".hs": ["stack", "test"],
+        ".hs": ["cabal", "test"],
     }
 
     # Get unique file extensions from test files

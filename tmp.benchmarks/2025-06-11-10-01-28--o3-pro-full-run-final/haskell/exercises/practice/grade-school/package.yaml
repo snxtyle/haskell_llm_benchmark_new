@@ -1,0 +1,21 @@
+name: grade-school
+version: 1.0.0.4
+
+# Dependencies that apply to every component (library + tests)
+dependencies:
+  - base
+  - containers      # needed for Data.Map.Strict
+
+library:
+  exposed-modules: School
+  source-dirs: src
+  ghc-options: -Wall
+
+tests:
+  test:
+    main: Tests.hs
+    source-dirs: test
+    dependencies:
+      - grade-school
+      - hspec
+      - containers   # not strictly required, but harmless and explicit

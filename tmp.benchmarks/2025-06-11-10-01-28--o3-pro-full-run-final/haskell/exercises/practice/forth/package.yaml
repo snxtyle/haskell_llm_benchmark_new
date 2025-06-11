@@ -1,0 +1,22 @@
+name: forth
+version: 1.7.1.13
+
+library:
+  exposed-modules: Forth
+  source-dirs: src
+  ghc-options: -Wall
+  dependencies:
+    - base               # Prelude and other standard definitions
+    - text               # Data.Text
+    - containers         # Data.Map.Strict
+
+tests:
+  test:
+    main: Tests.hs
+    source-dirs: test
+    ghc-options: -Wall
+    dependencies:
+      - forth
+      - hspec
+      - text
+      - containers

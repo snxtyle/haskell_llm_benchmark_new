@@ -1,0 +1,26 @@
+name: robot-name
+version: 0.1.0.4
+
+# A component-specific build-depend list is more reliable than relying on
+# top-level defaults, so we list every required library explicitly.
+
+library:
+  exposed-modules: Robot
+  source-dirs: src
+  ghc-options: -Wall
+  dependencies:
+    - base >=4.7 && <5
+    - mtl
+    - containers
+    - random
+
+tests:
+  test:
+    main: Tests.hs
+    source-dirs: test
+    dependencies:
+      - base
+      - robot-name
+      - hspec
+      - containers
+      - random

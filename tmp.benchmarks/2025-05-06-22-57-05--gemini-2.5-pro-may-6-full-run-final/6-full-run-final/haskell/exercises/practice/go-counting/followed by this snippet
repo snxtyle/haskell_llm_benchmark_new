@@ -1,4 +1,0 @@
-            let (updatedBorderingColors, newEmptyNeighborsToQueue) =
-                    foldl (exploreNeighbor currentCell territoryFound) 
-                          (borderingColorsFound, []) 
-                          (adjacentCoords currentCell)

@@ -1,0 +1,22 @@
+name: book-store
+version: 1.0.0.0
+
+# Top-level dependencies are automatically inherited by every component
+# (library, executables, tests, …).  Listing `containers` here guarantees
+# that the library as well as the test-suite can import Data.Map.Strict.
+dependencies:
+  - base >= 4.7 && < 5
+  - containers
+
+library:
+  exposed-modules: BookStore
+  source-dirs: src
+  ghc-options: -Wall
+
+tests:
+  test:
+    main: Tests.hs
+    source-dirs: test
+    dependencies:
+      - book-store
+      - hspec

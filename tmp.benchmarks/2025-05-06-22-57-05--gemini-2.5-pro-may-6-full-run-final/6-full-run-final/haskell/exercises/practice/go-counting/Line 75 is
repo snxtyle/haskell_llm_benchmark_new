@@ -1,1 +1,0 @@
-    (finalTerritoryCoords, finalBorderingStoneColors) = bfsLoop [startCoord] (Set.singleton startCoord) Set.empty

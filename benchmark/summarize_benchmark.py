@@ -446,12 +446,12 @@ def plot_comparison(df: pd.DataFrame, output_path: Optional[str] = None) -> None
     # Process model names for better readability
     # REMOVED dummy plot creation from here
     
-    labels = ax1.get_xticklabels()
+    # Get model names directly from the dataframe instead of from xticklabels
+    model_names = df[model_col].tolist()
     
     # First get model names and process them
     processed_labels = []
-    for label in labels:
-        text = label.get_text()
+    for text in model_names:
         
         # Remove date patterns like -YYYY-MM-DD
         text = re.sub(r'-\d{4}-\d{2}-\d{2}', '', text)

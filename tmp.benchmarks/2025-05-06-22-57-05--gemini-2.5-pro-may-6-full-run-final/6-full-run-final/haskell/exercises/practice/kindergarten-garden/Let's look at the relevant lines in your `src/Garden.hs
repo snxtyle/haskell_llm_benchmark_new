@@ -1,3 +1,0 @@
-43│                        else let plantChars = [ row1_str !! (2*idx)
-...
-48│                                studentPlants = map charToPlant plantChars
