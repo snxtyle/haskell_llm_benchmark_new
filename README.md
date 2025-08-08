@@ -6,16 +6,16 @@ It is a modified version of the [Aider benchmark harness](https://github.com/Aid
 
 The benchmark is based on [Exercism's Haskell exercises](https://exercism.org/tracks/haskell) ([Github](https://github.com/exercism/haskell)). This benchmark evaluates how effectively a coding assistant and LLMs can translate a natural language coding request into executable code saved into files that pass unit tests. It provides an end-to-end evaluation of not just the LLM's coding ability, but also its capacity to edit existing code and format those code edits so that aider can save the edits to the local source files.
 
-_Last updated: 2025-06-11_
+_Last updated: 2025-08-08_
 
-![Haskell LLM Benchmark](/benchmark-result/report-2025-06-11-11-22-52/benchmark_comparison.png)
+![Haskell LLM Benchmark](/benchmark-result/report-2025-08-08-08-28-45/benchmark_comparison.png)
 
 | Model | Tests | Pass % | Pass 1st Try % | Tests Passed | Passes 1st Try | Well Formed % | Errors | Sec/Test | Total Cost ($) | Cost/Test ($) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | o3-high | 112 | 88.4 | 73.2 | 99 | 82 | 100.0 | 0 | 51.7 | 19.05 | 0.1701 |
+| gpt-5-2025-08-07 | 112 | 88.4 | 79.5 | 99 | 89 | 100.0 | 0 | 56.1 | 3.79 | 0.0339 |
 | o3 | 112 | 84.8 | 73.2 | 95 | 82 | 100.0 | 0 | 27.2 | 11.81 | 0.1055 |
 | o3-pro | 112 | 84.8 | 74.1 | 95 | 83 | 99.1 | 3 | 205.9 | 0.00 | 0.0000 |
-| deepseek-r1-0528 | 41 | 82.9 | 73.2 | 34 | 30 | 100.0 | 6 | 88.9 | 0.00 | 0.0000 |
 | o1-pro | 112 | 82.1 | 72.3 | 92 | 81 | 99.1 | 1 | 301.6 | 275.04 | 2.4558 |
 | gemini-2.5-pro-preview | 112 | 81.2 | 76.8 | 91 | 86 | 99.1 | 6 | 64.3 | 0.00 | 0.0000 |
 | claude-opus-4-20250514 | 112 | 81.2 | 65.2 | 91 | 73 | 100.0 | 0 | 22.5 | 0.00 | 0.0000 |
@@ -24,6 +24,9 @@ _Last updated: 2025-06-11_
 | gemini-2.5-flash-preview-05-20:thinking | 112 | 75.9 | 58.0 | 85 | 65 | 98.2 | 3 | 29.5 | 0.00 | 0.0000 |
 | o3-mini | 112 | 75.0 | 63.4 | 84 | 71 | 100.0 | 0 | 37.5 | 2.13 | 0.0190 |
 | o4-mini | 112 | 74.1 | 67.9 | 83 | 76 | 99.1 | 1 | 29.4 | 1.81 | 0.0162 |
+| horizon-alpha | 112 | 69.6 | 60.7 | 78 | 68 | 97.3 | 3 | 10.3 | 0.00 | 0.0000 |
+| claude-opus-4-1-20250805 | 112 | 69.6 | 59.8 | 78 | 67 | 100.0 | 1 | 21.4 | 13.28 | 0.1186 |
+| qwen/qwen3-coder | 112 | 66.1 | 50.0 | 74 | 56 | 99.1 | 1 | 31.3 | 0.00 | 0.0000 |
 | gpt-4.1-2025-04-14 | 112 | 65.2 | 57.1 | 73 | 64 | 100.0 | 0 | 7.6 | 1.14 | 0.0102 |
 | gpt-4.1-mini-2025-04-14 | 112 | 63.4 | 51.8 | 71 | 58 | 100.0 | 0 | 5.3 | 0.24 | 0.0021 |
 
