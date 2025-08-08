@@ -1,6 +1,0 @@
-            (validationResult, decimalValue) = foldl (\(err, acc) digit ->
-                if err /= Right () then (err, acc) -- Line 19, body starts at col 17
-                else if digit < 0 || digit >= inputBase
-                    then (Left (InvalidDigit digit), acc)
-                else (Right (), acc * inputBase + digit)
-            ) (Right (), 0) inputDigits -- Line 22, ')' is at col 13
