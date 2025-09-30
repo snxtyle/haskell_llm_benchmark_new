@@ -6,9 +6,9 @@ It is a modified version of the [Aider benchmark harness](https://github.com/Aid
 
 The benchmark is based on [Exercism's Haskell exercises](https://exercism.org/tracks/haskell) ([Github](https://github.com/exercism/haskell)). This benchmark evaluates how effectively a coding assistant and LLMs can translate a natural language coding request into executable code saved into files that pass unit tests. It provides an end-to-end evaluation of not just the LLM's coding ability, but also its capacity to edit existing code and format those code edits so that aider can save the edits to the local source files.
 
-_Last updated: 2025-08-08_
+_Last updated: 2025-09-29_
 
-![Haskell LLM Benchmark](/benchmark-result/report-2025-08-08-10-31-26/benchmark_comparison.png)
+![Haskell LLM Benchmark](/benchmark-result/report-2025-09-29-23-50-54/benchmark_comparison.png)
 
 | Model | Tests | Pass % | Pass 1st Try % | Tests Passed | Passes 1st Try | Well Formed % | Errors | Sec/Test | Total Cost ($) | Cost/Test ($) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -19,13 +19,17 @@ _Last updated: 2025-08-08_
 | o3-pro | 112 | 84.8 | 74.1 | 95 | 83 | 99.1 | 3 | 205.9 | 0.00 | 0.0000 |
 | gemini-2.5-pro-preview | 112 | 81.2 | 76.8 | 91 | 86 | 99.1 | 6 | 64.3 | 0.00 | 0.0000 |
 | claude-opus-4-20250514 | 112 | 81.2 | 65.2 | 91 | 73 | 100.0 | 0 | 22.5 | 0.00 | 0.0000 |
+| claude-sonnet-4-5-20250929 | 112 | 79.5 | 67.0 | 89 | 75 | 100.0 | 0 | 13.9 | 2.48 | 0.0222 |
 | claude-sonnet-4-20250514 | 112 | 77.7 | 61.6 | 87 | 69 | 99.1 | 4 | 14.8 | 0.00 | 0.0000 |
 | o3-mini | 112 | 75.0 | 63.4 | 84 | 71 | 100.0 | 0 | 37.5 | 2.13 | 0.0190 |
 | o4-mini | 112 | 74.1 | 67.9 | 83 | 76 | 99.1 | 1 | 29.4 | 1.81 | 0.0162 |
 | claude-opus-4-1-20250805 | 112 | 69.6 | 59.8 | 78 | 67 | 100.0 | 1 | 21.4 | 13.28 | 0.1186 |
+| x-ai/grok-code-fast-1 | 112 | 68.8 | 51.8 | 77 | 58 | 100.0 | 4 | 23.1 | 0.00 | 0.0000 |
 | qwen/qwen3-coder | 112 | 66.1 | 50.0 | 74 | 56 | 99.1 | 1 | 31.3 | 0.00 | 0.0000 |
 | gpt-4.1-2025-04-14 | 112 | 65.2 | 57.1 | 73 | 64 | 100.0 | 0 | 7.6 | 1.14 | 0.0102 |
+| deepseek-chat-v3.1 | 112 | 65.2 | 48.2 | 73 | 54 | 100.0 | 0 | 47.8 | 0.00 | 0.0000 |
 | gpt-4.1-mini-2025-04-14 | 112 | 63.4 | 51.8 | 71 | 58 | 100.0 | 0 | 5.3 | 0.24 | 0.0021 |
+| qwen/qwen3-max | 112 | 59.8 | 53.6 | 67 | 60 | 100.0 | 705 | 66.5 | 0.00 | 0.0000 |
 
 
 
