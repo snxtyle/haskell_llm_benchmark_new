@@ -1419,8 +1419,8 @@
   examples_as_sys_msg: true
   reminder: sys
   extra_params:
-    api_base: "https://grid.ai.juspay.net/v1"
-    api_key: "sk-r6wUV-lbzCiTe3pQ1ktBew"
+    api_base: "paste_api_url_here"
+    api_key: "paste_api_key_here"
     max_tokens: 8192
     custom_llm_provider: "openai"
     model: "glm-latest"
