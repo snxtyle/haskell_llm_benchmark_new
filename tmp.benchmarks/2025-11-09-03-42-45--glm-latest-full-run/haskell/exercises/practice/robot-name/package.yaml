@@ -1,0 +1,20 @@
+name: robot-name
+version: 0.1.0.4
+
+library:
+  exposed-modules: Robot
+  source-dirs: src
+  ghc-options: -Wall
+  dependencies:
+    - base
+    - mtl
+    - containers
+    - random
+
+tests:
+  test:
+    main: Tests.hs
+    source-dirs: test
+    dependencies:
+      - robot-name
+      - hspec

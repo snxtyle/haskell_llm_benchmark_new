@@ -1,0 +1,13 @@
+module DNA (toRNA) where
+
+import Data.Traversable (traverse)
+
+toRNA :: String -> Either Char String
+toRNA = traverse transcribe
+  where
+    transcribe :: Char -> Either Char Char
+    transcribe 'G' = Right 'C'
+    transcribe 'C' = Right 'G'
+    transcribe 'T' = Right 'A'
+    transcribe 'A' = Right 'U'
+    transcribe c   = Left c

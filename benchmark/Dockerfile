@@ -53,8 +53,14 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     core-js@3.37.1 \
     eslint@8.49.0
 
-# Install Haskell Stack
-RUN curl -sSL https://get.haskellstack.org/ | sh
+# Install Haskell tools via GHCup (includes modern Cabal and Stack)
+RUN curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+ENV PATH="/root/.ghcup/bin:$PATH"
+RUN ghcup install cabal recommended && \
+    ghcup install ghc recommended && \
+    ghcup set ghc recommended && \
+    ghcup set cabal recommended && \
+    cabal update
 
 COPY . /aider
 RUN pip3 install --no-cache-dir --upgrade pip uv

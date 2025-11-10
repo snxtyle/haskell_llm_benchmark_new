@@ -1411,7 +1411,21 @@
   edit_format: diff-fenced
   use_repo_map: true
   weak_model_name: openrouter/google/gemini-2.0-flash-001
-  
+
+- name: glm-latest
+  edit_format: whole
+  weak_model_name: glm-latest
+  use_repo_map: true
+  examples_as_sys_msg: true
+  reminder: sys
+  extra_params:
+    api_base: "https://grid.ai.juspay.net/v1"
+    api_key: "sk-r6wUV-lbzCiTe3pQ1ktBew"
+    max_tokens: 8192
+    custom_llm_provider: "openai"
+    model: "glm-latest"
+  accepts_settings: ["reasoning_effort"]
+
 #- name: openrouter/qwen/qwen3-235b-a22b
 #  system_prompt_prefix: "/no_think"
 #  use_temperature: 0.7
@@ -1434,5 +1448,4 @@
 #    top_p: 0.8
 #    top_k: 20
 #    min_p: 0.0
-#    temperature: 0.7  
-    
+#    temperature: 0.7

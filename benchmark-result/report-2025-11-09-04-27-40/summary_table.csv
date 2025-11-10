@@ -1,0 +1,2 @@
+dirname,dir_path,completed_tests,total_tests,model,edit_format,commit_hash,pass_rate_1,pass_rate_2,percent_cases_well_formed,error_outputs,num_malformed_responses,num_with_malformed_responses,seconds_per_case,total_cost,cost_per_case,passes_total,passes_1st_try,model_display
+2025-11-09-03-42-45--glm-latest-full-run,tmp.benchmarks/2025-11-09-03-42-45--glm-latest-full-run,112,112,glm-latest,whole,d54c5fd-dirty,54.5,63.4,100.0,8,0,0,94.7,0.0,0.0,71,61,glm-latest
