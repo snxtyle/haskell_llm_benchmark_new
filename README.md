@@ -6,7 +6,7 @@ It is a modified version of the [Aider benchmark harness](https://github.com/Aid
 
 The benchmark is based on [Exercism's Haskell exercises](https://exercism.org/tracks/haskell) ([Github](https://github.com/exercism/haskell)). This benchmark evaluates how effectively a coding assistant and LLMs can translate a natural language coding request into executable code saved into files that pass unit tests. It provides an end-to-end evaluation of not just the LLM's coding ability, but also its capacity to edit existing code and format those code edits so that aider can save the edits to the local source files.
 
-_Last updated: 2025-09-29_
+_Last updated: 2025-10_10
 
 ![Haskell LLM Benchmark](/main_comparison_chart.png)
 
