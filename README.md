@@ -8,7 +8,7 @@ The benchmark is based on [Exercism's Haskell exercises](https://exercism.org/tr
 
 _Last updated: 2025-10_10
 
-![Haskell LLM Benchmark](/main_comparison_chart.png)
+![Haskell LLM Benchmark](/benchmark_comparison_with_glm.png)
 
 | Model | Tests | Pass % | Pass 1st Try % | Tests Passed | Passes 1st Try | Well Formed % | Errors | Sec/Test | Total Cost ($) | Cost/Test ($) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
